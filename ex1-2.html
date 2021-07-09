@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+</head>
+<body>
+    <p>BMI 계산기</p>
+    <script>
+        var height = prompt("키를 입력하세요.");
+        var h = Number(height);
+        var weight = prompt("몸무게를 입력하세요.");
+        var w = Number(weight);
+        document.write("입력받은 키는 " + h + "cm입니다."+"<br>");
+        document.write("입력받은 몸무게는 " + w+"kg입니다."+"<br>");
+        h = h/100;
+        var bmi = w / (h * h);
+        document.write("BMI 결과값은 "+bmi+"입니다."+"<br><br>");
+    </script>
+</body>
+</html>
