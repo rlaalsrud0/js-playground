@@ -27,7 +27,7 @@
             // }
         };
         numbers.addPrime = function(){
-            for(var i = 2; i< this.all.length; i++){
+            for(var i = 0; i< this.all.length; i++){
                 var n = this.all[i];
                 // if(number % i === 0){
                 //     isPrime = false;
@@ -48,12 +48,12 @@
             return ret;
         };
         numbers.addAll = function(max_num){
-            for(var i = 0; i < max_num; i++){
+            for(var i = 2; i < max_num; i++){
                 this.all.push(i);
             }
         };
         numbers.addAll(10000);
-        numbers.addPrime(10000);
+        numbers.addPrime();
         document.write(numbers.getAllPrimes());
     </script>
 </body>
