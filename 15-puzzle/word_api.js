@@ -12,6 +12,13 @@ var game = {
     'current' : 0
 };
 
+
+// result objects
+var result = {
+    'score' : [],
+    'userName' : []
+};
+
 function doFetchGet() {
     return (fetch ('./index.php',{
         method : 'POST',
@@ -40,6 +47,7 @@ async function fetchAfterGet(event){
     game.init();
     game.shuffle();
     game.startTime = Date.now();
+    x = setInterval(updateTime, 50);
 }
 
 
@@ -85,7 +93,7 @@ game.init = function () {
     this.choose();
     this.addButtons();
     this.updateDisplay();
-    var x = setInterval(updateTime, 50);
+    //var x = setInterval(updateTime, 50);
 
 };
 //초기화 함수 호출
@@ -122,6 +130,7 @@ game.lshift = function(){
     game.copyBtnText();
     game.updateDisplay();
 };
+var x = 0;
 // 맞췄으면 O표시
 game.progress = function(){
     if(game.checkGood()){
@@ -139,9 +148,64 @@ game.progress = function(){
     if(game.current === game.maxPlay){
         var sec = (Date.now() - game.startTime) / 1000;
         alert("Good! Your Record : " + sec + " sec");
+        inputname();
+        passVal(sec);
         clearInterval(x);
     }
 };
+
+function passVal(time){
+    console.log(time);
+    sendScoreToServer(time);
+}
+
+function sendScoreToServer(time) {
+    var formData = new FormData();
+    formData.append("time", time);
+    fetch("./get_data.php", {
+        method: "POST",
+        body: formData
+        
+    })
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (data) {
+            console.log(data);
+        })
+        .catch((data) => {
+            console.log(data);
+        });
+}
+
+function inputname(){
+    var input = confirm("이름을 입력하시겠습니까?");
+    if(input === true){
+        var inputString = prompt('이름을 입력하세요', '김민경'); 
+        //alert(inputString);
+        //return inputString;
+        sendNameToServer(inputString);
+    }
+}
+
+function sendNameToServer(name) {
+    var formData = new FormData();
+    formData.append("name", name);
+    fetch("./get_data.php", {
+        method: "POST",
+        body: formData
+        
+    })
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (data) {
+            console.log(data);
+        })
+        .catch((data) => {
+            console.log(data);
+        });
+}
 
 //event handler for swap button
 var swap = function () {
