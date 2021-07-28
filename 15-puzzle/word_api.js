@@ -148,49 +148,25 @@ game.progress = function(){
     if(game.current === game.maxPlay){
         var sec = (Date.now() - game.startTime) / 1000;
         alert("Good! Your Record : " + sec + " sec");
-        inputname();
         passVal(sec);
+        //inputname();
         clearInterval(x);
     }
 };
 
 function passVal(time){
     console.log(time);
-    sendScoreToServer(time);
-}
-
-function sendScoreToServer(time) {
-    var formData = new FormData();
-    formData.append("time", time);
-    fetch("./get_data.php", {
-        method: "POST",
-        body: formData
-        
-    })
-        .then(function (response) {
-            return response.text();
-        })
-        .then(function (data) {
-            console.log(data);
-        })
-        .catch((data) => {
-            console.log(data);
-        });
-}
-
-function inputname(){
+    //sendDataToServer(time);
     var input = confirm("이름을 입력하시겠습니까?");
     if(input === true){
         var inputString = prompt('이름을 입력하세요', '김민경'); 
-        //alert(inputString);
-        //return inputString;
-        sendNameToServer(inputString);
+        sendDataToServer(time,inputString);
     }
 }
-
-function sendNameToServer(name) {
+function sendDataToServer(time, inputString) {
     var formData = new FormData();
-    formData.append("name", name);
+    formData.append("time", time);
+    formData.append("name", inputString);
     fetch("./get_data.php", {
         method: "POST",
         body: formData
@@ -206,6 +182,54 @@ function sendNameToServer(name) {
             console.log(data);
         });
 }
+
+// function sendScoreToServer(time) {
+//     var formData = new FormData();
+//     formData.append("time", time);
+//     fetch("./get_data.php", {
+//         method: "POST",
+//         body: formData
+        
+//     })
+//         .then(function (response) {
+//             return response.text();
+//         })
+//         .then(function (data) {
+//             console.log(data);
+//         })
+//         .catch((data) => {
+//             console.log(data);
+//         });
+// }
+
+// function inputname(){
+//     var input = confirm("이름을 입력하시겠습니까?");
+//     if(input === true){
+//         var inputString = prompt('이름을 입력하세요', '김민경'); 
+//         //alert(inputString);
+//         //return inputString;
+//         sendNameToServer(inputString);
+//     }
+// }
+
+// function sendNameToServer(name) {
+//     var formData = new FormData();
+//     formData.append("name", name);
+//     fetch("./get_data.php", {
+//         method: "POST",
+//         body: formData
+        
+//     })
+//         .then(function (response) {
+//             return response.text();
+//         })
+//         .then(function (data) {
+//             console.log(data);
+//         })
+//         .catch((data) => {
+//             console.log(data);
+//         });
+// }
 
 //event handler for swap button
 var swap = function () {
