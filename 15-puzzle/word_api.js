@@ -181,55 +181,33 @@ function sendDataToServer(time, inputString) {
         .catch((data) => {
             console.log(data);
         });
+        getVal();
 }
 
-// function sendScoreToServer(time) {
-//     var formData = new FormData();
-//     formData.append("time", time);
-//     fetch("./get_data.php", {
-//         method: "POST",
-//         body: formData
-        
-//     })
-//         .then(function (response) {
-//             return response.text();
-//         })
-//         .then(function (data) {
-//             console.log(data);
-//         })
-//         .catch((data) => {
-//             console.log(data);
-//         });
-// }
+function Get() {
+    return (fetch ('./rank.php',{
+        method : 'POST',
+        headers : {
+            'Content-Type' : 'application / json'
+    }
+    })
+    .then(function (response) {
+        console.log(response);
+        return response.text();
+    })
+    .catch(function(error){
+        return error;
+    }));
+}
 
-// function inputname(){
-//     var input = confirm("이름을 입력하시겠습니까?");
-//     if(input === true){
-//         var inputString = prompt('이름을 입력하세요', '김민경'); 
-//         //alert(inputString);
-//         //return inputString;
-//         sendNameToServer(inputString);
-//     }
-// }
+async function getVal(event){
+    console.log(event);           
+    var data = await Get(event);
+    console.log(data);
+    //alert(data);
+    document.write(data);
+}
 
-// function sendNameToServer(name) {
-//     var formData = new FormData();
-//     formData.append("name", name);
-//     fetch("./get_data.php", {
-//         method: "POST",
-//         body: formData
-        
-//     })
-//         .then(function (response) {
-//             return response.text();
-//         })
-//         .then(function (data) {
-//             console.log(data);
-//         })
-//         .catch((data) => {
-//             console.log(data);
-//         });
-// }
 
 //event handler for swap button
 var swap = function () {
