@@ -1,5 +1,7 @@
 {
     "iphone" : "iphone", 
-    "samsung" : "galaxy",
-    "js" : "javascript" 
+    "js" : "javascript",
+    "left" : "left",
+    "sky" : "sky",
+    "post" : "post" 
 }

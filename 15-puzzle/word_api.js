@@ -13,12 +13,6 @@ var game = {
 };
 
 
-// result objects
-var result = {
-    'score' : [],
-    'userName' : []
-};
-
 function doFetchGet() {
     return (fetch ('./index.php',{
         method : 'POST',
