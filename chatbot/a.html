@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>날씨 API</title>
+</head>
+
+<body>
+    <input type="button" value="start" onclick="get(event)">
+    <script>
+        function doFetchGet() {
+            return (fetch('./test.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application / json'
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    return response.text();
+                })
+                .catch(function (error) {
+                    return error;
+                }));
+        }
+
+        async function get(event) {
+            console.log(event);
+            var data = await doFetchGet(event);
+            //console.log(data);
+            document.write(data);
+        }
+    </script>
+</body>
+
+</html>
