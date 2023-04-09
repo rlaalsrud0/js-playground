@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const { config, Group } = require('solapi')
+
+        // 인증을 위해 발급받은 본인의 API Key를 사용합니다.
+        const apiKey = 'NCSYO6SCOOTMVBOI'
+        const apiSecret = 'GNTO8YNHHNPRIGSKTWA7FIHD03QLEFCD'
+        config.init({ apiKey, apiSecret })
+        async function send(params = {}) {
+            try {
+                const response = await Group.sendSimpleMessage(params)
+                console.log(response)
+                // var data = await doFetchGet(params = {});
+                // document.write(data);
+            } catch (e) {
+                console.log(e)
+            }
+        }
+    
+        const params = {
+            type: 'SMS', // 발송할 메시지 타입 (SMS, LMS, MMS, ATA, CTA)
+            to: '', // 수신번호 (받는이)
+            from: '' // 발신번호 (보내는이)
+        }
+        send(params)
+    </script>
+</body>
+
+</html>

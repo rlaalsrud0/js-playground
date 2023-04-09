@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>날씨 정보</h1>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        //var apiURL = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=979eb88a2f155193efd823e7a3e55c86";
+        //var apiURL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=XvksfMzK5mJmpIcQS5gcvO0bMyOZsXfk%2FYGJJkt%2Buc6DZ5PJQmNwVceuN2BfU3JIPmKhIU3Ejwnj9OIKhhdMSQ%3D%3D&numOfRows=10&pageNo=1&base_date=20210628&base_time=0600&nx=55&ny=127";
+        var apiURL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst';/XvksfMzK5mJmpIcQS5gcvO0bMyOZsXfk%2FYGJJkt%2Buc6DZ5PJQmNwVceuN2BfU3JIPmKhIU3Ejwnj9OIKhhdMSQ%3D%3D";
+        $.ajax({
+            url: apiURL,
+            dataType: "json",
+            type: "GET",
+            async: "false",
+            success: function(resp) {
+                console.log(resp);
+                console.log("현재온도 : "+ (resp.main.temp- 273.15) );
+                console.log("현재습도 : "+ resp.main.humidity);
+                console.log("날씨 : "+ resp.weather[0].main );
+                console.log("상세날씨설명 : "+ resp.weather[0].description );
+                console.log("날씨 이미지 : "+ resp.weather[0].icon );
+                console.log("바람   : "+ resp.wind.speed );
+                console.log("나라   : "+ resp.sys.country );
+                console.log("도시이름  : "+ resp.name );
+                console.log("구름  : "+ (resp.clouds.all) +"%" );                 
+            }
+        })
+    </script>
+</body>
+</html>

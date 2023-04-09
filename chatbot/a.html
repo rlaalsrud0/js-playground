@@ -12,10 +12,11 @@
     <input type="button" value="start" onclick="get(event)">
     <script>
         function doFetchGet() {
-            return (fetch('./test.php', {
+            return (fetch('./chatbot_m.php', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application / json'
+                    'Authorization' : 'Bearer qDJ-YmWA2EIPX0B6_IeidRRwknjtlS5i75bndAorDKYAAAF7BG-p9w',
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 }
             })
                 .then(function (response) {
